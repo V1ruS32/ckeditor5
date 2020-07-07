@@ -28,7 +28,58 @@
 
 <script src="../build/ckeditor.js"></script>
 <script>
-	ClassicEditor.create( document.querySelector( '#editor' ) )
+	let config = {
+			toolbar: {
+				items: [
+					'heading',
+					'|',
+					'bold',
+					'italic',
+					'link',
+					'bulletedList',
+					'numberedList',
+					'|',
+					'indent',
+					'outdent',
+					'|',
+					'imageUpload',
+					'blockQuote',
+					'insertTable',
+					'undo',
+					'Template',
+					'SaveTemplate',
+				]
+			},
+			Template:{
+				button:{
+					saveTemplateUrl: 'http://hippocrate.lo/'
+				},
+				list:{
+					replaceAll: false,
+					getTemplatesCount: 'http://hippocrate.lo/doctor/GetTemplatesCount',
+					getTemplatesUrl: 'http://hippocrate.lo/doctor/GetTemplates',
+					deleteUrl: 'http://hippocrate.lo/doctor/DeleteTemplate',
+				}
+			},
+			image: {
+				toolbar: [
+					'imageStyle:full',
+					'imageStyle:side',
+					'|',
+					'imageTextAlternative'
+				]
+			},
+			table: {
+				contentToolbar: [
+					'tableColumn',
+					'tableRow',
+					'mergeTableCells'
+				]
+			},
+			// This value must be kept in sync with the language defined in webpack.config.js.
+			language: 'en'
+		}
+	ClassicEditor.create( document.querySelector( '#editor' ), config )
 		.then( editor => {
 			window.editor = editor;
 		} )
